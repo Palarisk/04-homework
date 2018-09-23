@@ -115,15 +115,22 @@ function ready(datapoints) {
     })
 
     .on('mouseover', function(d) {
-      console.log(d)
-      svg
-        .selectAll('.kentucky')
-        .attr('fill', 'pink')
-        .attr('stroke', 'pink')
+      var classSelected = d.state.toLowerCase().replace(/[^a-z]*/g, '')
+
+      svg.selectAll('text.' + classSelected).attr('fill', 'pink')
+      svg.selectAll('circle.' + classSelected).attr('fill', 'pink')
+      svg.selectAll('path.' + classSelected).attr('stroke', 'pink')
     })
     .on('mouseout', function(d) {
-      d3.select(this).attr('fill', function(d) {
+      var classSelected = d.state.toLowerCase().replace(/[^a-z]*/g, '')
+      svg.selectAll('text.' + classSelected).attr('fill', function(d) {
         return colorScale(d.state)
+      })
+      svg.selectAll('circle.' + classSelected).attr('fill', function(d) {
+        return colorScale(d.state)
+      })
+      svg.selectAll('path.' + classSelected).attr('stroke', function(d) {
+        return colorScale(d.key)
       })
     })
 
@@ -134,22 +141,14 @@ function ready(datapoints) {
     })
     .entries(datapoints)
 
-  var classtest = svg
-  .data(nested)
-  .attr('class', function(d) {
-    return d.key.toLowerCase().replace(/[^a-z]*/g, '')
-  })
-  //  console.log(classtest)
-
   svg
     .selectAll('path')
     .data(nested)
     .enter()
     .append('path')
-    .attr('class', classtest)
-    //    .attr('class', function(d) {
-    //      return d.key.toLowerCase().replace(/[^a-z]*/g, '')
-    //    })
+    .attr('class', function(d) {
+      return d.key.toLowerCase().replace(/[^a-z]*/g, '')
+    })
     .attr('stroke', function(d) {
       return colorScale(d.key)
     })
@@ -159,10 +158,23 @@ function ready(datapoints) {
       return line(d.values)
     })
     .on('mouseover', function(d) {
-      svg
-        .selectAll('.kentucky')
-        .attr('fill', 'pink')
-        .attr('stroke', 'pink')
+      var classSelected = d.key.toLowerCase().replace(/[^a-z]*/g, '')
+
+      svg.selectAll('text.' + classSelected).attr('fill', 'pink')
+      svg.selectAll('circle.' + classSelected).attr('fill', 'pink')
+      svg.selectAll('path.' + classSelected).attr('stroke', 'pink')
+    })
+    .on('mouseout', function(d) {
+      var classSelected = d.key.toLowerCase().replace(/[^a-z]*/g, '')
+      svg.selectAll('text.' + classSelected).attr('fill', function(d) {
+        return colorScale(d.state)
+      })
+      svg.selectAll('circle.' + classSelected).attr('fill', function(d) {
+        return colorScale(d.state)
+      })
+      svg.selectAll('path.' + classSelected).attr('stroke', function(d) {
+        return colorScale(d.key)
+      })
     })
 
   svg
@@ -194,35 +206,24 @@ function ready(datapoints) {
       return 3
     })
     .on('mouseover', function(d) {
-      console.log(d)
-      svg
-        .selectAll('kentucky')
-        .attr('fill', 'pink')
-        .attr('stroke', 'pink')
-    })
+      var classSelected = d.key.toLowerCase().replace(/[^a-z]*/g, '')
 
-  /* ei toimi
-    .on('mouseover', function (d) {
-      d3.select(this).attr('fill', purple)
-    .on('mouseover', function(d) {
-      d3.select(this)
-        .attr('fill', 'pink')
+      svg.selectAll('text.' + classSelected).attr('fill', 'pink')
+      svg.selectAll('circle.' + classSelected).attr('fill', 'pink')
+      svg.selectAll('path.' + classSelected).attr('stroke', 'pink')
     })
-  
-
-  svg
-    .data(nested)
-    .selectAll('class', function(d) {
-      return d.key
+    .on('mouseout', function(d) {
+      var classSelected = d.key.toLowerCase().replace(/[^a-z]*/g, '')
+      svg.selectAll('text.' + classSelected).attr('fill', function(d) {
+        return colorScale(d.state)
+      })
+      svg.selectAll('circle.' + classSelected).attr('fill', function(d) {
+        return colorScale(d.state)
+      })
+      svg.selectAll('path.' + classSelected).attr('stroke', function(d) {
+        return colorScale(d.key)
+      })
     })
-    .on('mouseover', function(d){
-      d3.select('class', function(d) {
-      return d.key
-    })
-      .attr('fill', 'purple')
-    }
-
-  */
 
   var xAxis = d3.axisBottom(xPositionScale)
 
