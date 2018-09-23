@@ -119,7 +119,10 @@ function ready(datapoints) {
 
       svg.selectAll('text.' + classSelected).attr('fill', 'pink')
       svg.selectAll('circle.' + classSelected).attr('fill', 'pink')
-      svg.selectAll('path.' + classSelected).attr('stroke', 'pink')
+      svg
+        .selectAll('path.' + classSelected)
+        .attr('stroke', 'pink')
+        .raise()
     })
     .on('mouseout', function(d) {
       var classSelected = d.state.toLowerCase().replace(/[^a-z]*/g, '')
@@ -162,7 +165,10 @@ function ready(datapoints) {
 
       svg.selectAll('text.' + classSelected).attr('fill', 'pink')
       svg.selectAll('circle.' + classSelected).attr('fill', 'pink')
-      svg.selectAll('path.' + classSelected).attr('stroke', 'pink')
+      svg
+        .selectAll('path.' + classSelected)
+        .attr('stroke', 'pink')
+        .raise()
     })
     .on('mouseout', function(d) {
       var classSelected = d.key.toLowerCase().replace(/[^a-z]*/g, '')
@@ -210,7 +216,10 @@ function ready(datapoints) {
 
       svg.selectAll('text.' + classSelected).attr('fill', 'pink')
       svg.selectAll('circle.' + classSelected).attr('fill', 'pink')
-      svg.selectAll('path.' + classSelected).attr('stroke', 'pink')
+      svg
+        .selectAll('path.' + classSelected)
+        .attr('stroke', 'pink')
+        .raise()
     })
     .on('mouseout', function(d) {
       var classSelected = d.key.toLowerCase().replace(/[^a-z]*/g, '')
